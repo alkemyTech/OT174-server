@@ -1,6 +1,6 @@
 var user = require("../models/index");
 const bcryptjs = require("bcryptjs");
-// const { hashPassword } = require("../helpers/bcryptjs");
+const { sendEmail } = require("../helpers/sgMail");
 
 const AddUsuario = (req, res, next) => {
   const { firstName, lastName, email, password, image, roleId } = req.body;
@@ -17,13 +17,14 @@ const AddUsuario = (req, res, next) => {
       // body
     })
     .then(function (user) {
-      res.json({
-        success: true,
-        message: "Successfully created new user",
-        user: user,
+      sendEmail(user.email);
+      res.status(201).json({
+        message: "User created successfully",
+        user,
       });
     })
     .catch(function (err) {
+      console.log("err ::::::", err);
       res.json({
         success: false,
         message: "Error: server error",
