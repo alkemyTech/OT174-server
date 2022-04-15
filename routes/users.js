@@ -28,7 +28,7 @@ router.post("/auth/register", function (req, res, next) {
           roleId: roleId,
         })
         .then((user) => {
-          let count = usersdb.count;
+          
           res.status(200).json({
             state: true,
             message: "User created successfully",
