@@ -1,21 +1,17 @@
 var user = require("../models/index");
+const bcryptjs = require("bcryptjs");
+// const { hashPassword } = require("../helpers/bcryptjs");
 
 const AddUsuario = (req, res, next) => {
   const { firstName, lastName, email, password, image, roleId } = req.body;
-
-  //   if (!firstName || !lastName || !email || !password || !image || !roleId) {
-  //     return res.status(400).json({
-  //       success: false,
-  //       message: "All fields are required to register (¬‿¬)",
-  //     });
-  //   }
   usersdb = user.User;
+
   usersdb
     .create({
       firstName,
       lastName,
       email,
-      password,
+      password: bcryptjs.hashSync(password, 10),
       image,
       roleId,
       // body
@@ -23,14 +19,14 @@ const AddUsuario = (req, res, next) => {
     .then(function (user) {
       res.json({
         success: true,
-        message: "Usuario creado correctamente",
+        message: "Successfully created new user",
         user: user,
       });
     })
     .catch(function (err) {
       res.json({
         success: false,
-        message: "Error al crear el usuario",
+        message: "Error: server error",
         error: err,
       });
     });

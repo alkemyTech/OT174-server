@@ -3,7 +3,7 @@ const { body, validationResult, check, oneOf } = require('express-validator');
 const { validarCampos} = require('../middlewares/validar-campos');
 var user = require('../models/index')
 const UsuarioController = require('../controllers/users')
-const {emailExiste, existeUsuarioPorId} = require('../helpers/db-validatiors')
+const { emailExiste, existeUsuarioPorId } = require('../helpers/db-validatiors')
 
 var router = express.Router()
 
