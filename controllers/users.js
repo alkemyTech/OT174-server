@@ -17,7 +17,7 @@ const AddUsuario = (req, res, next) => {
       // body
     })
     .then(function (user) {
-      sendEmail(user.email);
+      sendEmail(user.email, user.firstName, user.lastName);
       res.status(201).json({
         message: "User created successfully",
         user,
