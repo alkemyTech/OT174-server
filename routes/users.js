@@ -8,72 +8,55 @@ router.get("/", function (req, res, next) {
 });
 
 router.post("/auth/register", function (req, res, next) {
+
   const { firstName, lastName, email, password, image, roleId } = req.body;
- // verificar que el email no exista en la base de datos 
 
-  // buscar que el correo exista en la base de datos y que no este registrado
-  user.User.findOne({ where: { email: email } }).then((user) => {
-    if (user) {
+  usersdb = user.User;
+  usersdb.findAll({ where: { email: email } }).then((user) => {
+    if (user.length > 0) {
       res.status(400).json({
-        message: "El correo ya esta registrado",
-      });
-    } 
- 
-
-  user.User.create({
-    firstName,
-    lastName,
-    email,
-    password,
-    image,
-    roleId,
-    // body
-  })
-    .then(function (user) {
-      res.json({
-        success: true,
-        message: "Usuario creado correctamente",
-        user: user,
-      });
-    })
-    .catch(function (err) {
-      res.json({
-        success: false,
-        message: "Error al crear el usuario",
-        error: err,
-      });
-    });
-
-
-
-
+        msg: `User ${email} already exists`,  
+      }); 
+    } else {
+      usersdb
+        .create({
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          password: password,
+          image: image,
+          roleId: roleId,
+        })
+        .then((user) => {
+          let count = usersdb.count;
+          res.status(200).json({
+            state: true,
+            message: "User created successfully",
+            msg: `Felicitaciones ${firstName} ${lastName} ya puedes iniciar sesion`,
+            user: user,
+          });
+        }) 
+        .catch((err) => {
+          res.status(400).json({
+            state: false,
+            message: "Error creating user",
+            error: err,
+          });
+        });
+    }
   });
 });
 
+console.log();
+
 module.exports = router;
 
+// crear el usuario en la base de datos
+// const sql = `INSERT INTO users (firstName, lastName, email, password, image, roleId) VALUES ('${firstName}', '${lastName}', '${email}', '${password}', '${image}', '${roleId}')`;
+// user.User.sequelize.query(sql).then((user) => {
+//   res.status(200).json({
+//     message: "Usuario creado correctamente",
 
-
-// user.User.create({
-//   firstName,
-//   lastName,
-//   email,
-//   password,
-//   image,
-//   roleId,
-//   // body
-// })
-//   .then(function (user) {
-//     res.json({
-//       success: true,
-//       message: "Usuario creado correctamente",
-//       user: user,
-//     });
-//   })
-//   .catch(function (err) {
-//     res.json({
-//       success: false,
-//       message: "Error al crear el usuario",
-//       error: err,
-//     });
 //   });
+// }
+// );
