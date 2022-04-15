@@ -11,6 +11,12 @@ router.post("/auth/register", function (req, res, next) {
 
   const { firstName, lastName, email, password, image, roleId } = req.body;
 
+  if (!firstName || !lastName || !email || !password || !image || !roleId) {
+    return res.status(400).json({
+      success: false,
+      message: "All fields are required to register (¬‿¬)",
+    });
+  }
   usersdb = user.User;
   usersdb.findAll({ where: { email: email } }).then((user) => {
     if (user.length > 0) {
