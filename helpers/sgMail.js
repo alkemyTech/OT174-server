@@ -11,6 +11,7 @@ const sendEmail = (email,nombre,lastName) => {
     from: SENDGRID_DOMAIN,
     subject: "Successfully registered",
     text: "You have successfully registered",
+    // TODO: HACER TEMPLATE DE CORREO CON NOMBRE Y APELLIDO DEL USUARIO REGISTRADO
     html: `
         <div>
           <h1>Welcome a ONG !</h1>
@@ -35,3 +36,7 @@ const sendEmail = (email,nombre,lastName) => {
 console.log(  )
 
 module.exports = { sendEmail };
+
+
+
+

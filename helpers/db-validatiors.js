@@ -2,9 +2,8 @@
 const user = require("../models/index");
 
 
-
+// ? Verificar si el correo existe en la base de datos
 const emailExiste = async (correo = "") => {
-  // Verificar si el correo existe
   usersdb = user.User;
   const existeUsuario = await usersdb.findOne({ where: { email: correo } });
   if (existeUsuario) {

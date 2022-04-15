@@ -14,6 +14,8 @@ router.get('/', function (req, res, next) {
   res.send('respond with a resource GET')
 });
 
+// * Registro de usuarios y validaciones de campos de registro
+
 router.post('/auth/register',[
   check('firstName', 'Name is required').not().isEmpty(),
   check('lastName', 'Last name is required').not().isEmpty(),
@@ -28,7 +30,7 @@ router.post('/auth/register',[
 ],UsuarioController.AddUsuario)
 
 
-console.log()
+
 
 module.exports = router
 

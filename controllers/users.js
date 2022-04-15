@@ -37,6 +37,7 @@ module.exports = {
   AddUsuario,
 };
 
+
 // crear el usuario en la base de datos
 // const sql = `INSERT INTO users (firstName, lastName, email, password, image, roleId) VALUES ('${firstName}', '${lastName}', '${email}', '${password}', '${image}', '${roleId}')`;
 // user.User.sequelize.query(sql).then((user) => {
