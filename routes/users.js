@@ -22,14 +22,11 @@ router.post('/auth/register',[
   check('password', 'The password must have at least one uppercase letter').matches(/[A-Z]/),
   check('password', 'Password must have at least one lowercase letter').matches(/[a-z]/),
   check('password', 'The password must have at least one special character').matches(/[!@#$%^&*(),.?":{}|<>]/),
-
- 
-
-  
   check('email', 'invalid email').isEmail(),
   check('email').custom(emailExiste),
  
   validarCampos
+
 ],UsuarioController.AddUsuario)
 
 
