@@ -17,20 +17,7 @@ router.get('/', function (req, res, next) {
 
 router.post('/auth/register',validateCreateUser,UsuarioController.AddUsuario)
 
-// router.post('/auth/register',[
-//   check('firstName', 'Name is required').not().isEmpty(),
-//   check('lastName', 'Last name is required').not().isEmpty(),
-//   check('password', 'The password must have at least 6 characters').isLength({ min: 6 }),
-//   check('password', 'The password must have at least one number').matches(/\d/),
-//   check('password', 'The password must have at least one uppercase letter').matches(/[A-Z]/),
-//   check('password', 'Password must have at least one lowercase letter').matches(/[a-z]/),
-//   check('password', 'The password must have at least one special character').matches(/[!@#$%^&*(),.?":{}|<>]/),
-//   check('email', 'invalid email').isEmail(),
-//   check('email').custom(emailExiste),
- 
-//   validarCampos
 
-// ],UsuarioController.AddUsuario)
 
 
 console.log()
