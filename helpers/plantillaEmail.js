@@ -1,11 +1,10 @@
 const sgMail = require("@sendgrid/mail");
 const { SENDGRID_API_KEY, SENDGRID_DOMAIN } =
   require("../config/config").development;
+const sendplantilla = require("./plantillaEmail").platilla;
 sgMail.setApiKey(SENDGRID_API_KEY);
 
-
 const sendEmail = (email, nombre, lastName) => {
-  
   const msg = {
     to: email,
     from: SENDGRID_DOMAIN,
@@ -312,13 +311,10 @@ const sendEmail = (email, nombre, lastName) => {
                       <div
                         style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:11px;line-height:1.5;text-align:left;color:#000000;">
                         <p style="text-align: center;"><span
-                            style="font-size: 24px;"><strong>BIENVENIDO...</strong></span></p>
+                            style="font-size: 24px;"><strong>T&iacute;tulo</strong></span></p>
                         <p style="text-align: center;">&nbsp;</p>
-                        <p style="text-align: center;" color: black ><span style="font-size: 16px;">¡Hola, ${nombre}, ${lastName}</span></p>
-                        <p style="text-align: center;"><span style="font-size: 16px;">TU REGISTRO FUE EXITOSO 🤙</span></p>
-
+                        <p style="text-align: center;"><span style="font-size: 16px;">¡Hola, ${nombre}, ${lastName}</span></p>
                       </div>
-                      <p style="text-align: center;"><span style="font-size: 16px;">Pronto un asesor se estarà comunicando contigo para darte mas informaciòn del Alkemy</span></p>
 
                     </td>
                   </tr>
@@ -439,4 +435,4 @@ const sendEmail = (email, nombre, lastName) => {
 
 console.log();
 
-module.exports = { sendEmail };
+// module.exports = { sendEmail };
