@@ -314,7 +314,7 @@ const sendEmail = (email, nombre, lastName) => {
                         <p style="text-align: center;"><span
                             style="font-size: 24px;"><strong>BIENVENIDO...</strong></span></p>
                         <p style="text-align: center;">&nbsp;</p>
-                        <p style="text-align: center;" color: black ><span style="font-size: 16px;">¡Hola, ${nombre}, ${lastName}</span></p>
+                        <p style="text-align: center;" color: black ><span style="font-size: 16px;">¡Hola, ${nombre} ${lastName}</span></p>
                         <p style="text-align: center;"><span style="font-size: 16px;">TU REGISTRO FUE EXITOSO 🤙</span></p>
 
                       </div>
