@@ -13,7 +13,7 @@ const validateCreateUser = [
 
       // TODO: validacion de firstName
     
-    check('firstName').exists().withMessage('Campo no puede is vacio....'), // todo: campo no puede is vacio
+    check('firstName').exists().withMessage('Campo no puede is vacio'), // todo: campo no puede is vacio
     check('firstName').isLength({ min: 3, max: 30 }).withMessage('El nombre debe de tener minimo 2 caracteres y maximo 30 caracteres'), // todo: se valida que el nombre tenga minimo 2 caracteres y maximo 30
     check('firstName').isAlpha('es-ES', { ignore: ' ' }).withMessage('No se permiten caracteres especiales ni numeros'), // todo: no cacteres especiales latinos
     
