@@ -1,4 +1,6 @@
 'use strict';
+const {Model} = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   const alias = "Organization";
   const cols = {
