@@ -1,8 +1,8 @@
-const { HttpCodesEnum, roleIds } = require("../enums");
+const { HttpCodesEnum, roleIdsEnum } = require("../enums");
 
 module.exports = {
   isAdmin: (req, res, next) => {
-    return req.user.roleId === roleIds.ADMIN
+    return req.user.roleId === roleIdsEnum.ADMIN
       ? next()
       : res
           .status(HttpCodesEnum.FORBBIDEN)
