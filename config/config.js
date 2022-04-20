@@ -7,6 +7,8 @@ module.exports = {
         "database":  process.env.DB_NAME,
         "host": process.env.DB_HOST,
         "port": process.env.DB_PORT,
+        "SENDGRID_API_KEY": process.env.SENDGRID_API_KEY,
+        "SENDGRID_DOMAIN": process.env.SENDGRID_DOMAIN,
         "dialect": "mysql"
     },
     "test": {
@@ -21,6 +23,8 @@ module.exports = {
         "password": process.env.DB_PASSWORD,
         "database": process.env.DB_NAME,
         "host": process.env.DB_HOST,
+        "SENDGRID_API_KEY": process.env.SENDGRID_API_KEY,
+        "SENDGRID_DOMAIN": process.env.SENDGRID_DOMAIN,
         "dialect": "mysql"
     }
 }
