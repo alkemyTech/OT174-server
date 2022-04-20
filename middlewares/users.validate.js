@@ -37,6 +37,10 @@ const validateCreateUser = [
 
     check('email', 'invalid email').isEmail(), //VALIDA QUE SEA UN EMAIL VALIDO
     check('email').custom(emailExiste), //VALIDA QUE NO EXISTA UN EMAIL IGUAL
+
+    //TODO: validacion de role
+    check('role').exists().withMessage('Campo no puede is vacio'), // todo: campo no puede is vacio
+    check('role').isNumeric().withMessage('El role debe de ser numerico'), // todo: se valida que el nombre tenga minimo 2 caracteres y maximo 30
     
    
     validarCampos  
