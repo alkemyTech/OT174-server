@@ -1,0 +1,17 @@
+// status codes
+
+exports.RESPONSE_OK = 200;
+exports.RESPONSE_CREATED = 201;
+exports.RESPONSE_UPDATED = 201;
+exports.RESPONSE_DELETED = 200;
+
+exports.ERROR_BAD_REQUEST = 400;
+exports.ERROR_UNAUTHORIZED = 401;
+exports.ERROR_FORBIDDEN = 403;
+exports.ERROR_NOT_FOUND = 404;
+
+exports.SERVER_INTERNAL_ERROR = 500;
+
+// ROLE IDs
+exports.ADMIN_ROLE_ID = 1;
+exports.STANDARD_ROLE_ID = 2;
