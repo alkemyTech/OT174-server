@@ -9,8 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       organizationId: {
-        type: Sequelize.STRING,
-        unique: true,
+        type: Sequelize.INTEGER,
         allowNull: false
       },
       text: {
@@ -26,6 +25,9 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         unique: true
+      },
+      deletedAt: {
+        type: Sequelize.DATE,
       },
       createdAt: {
         allowNull: false,
