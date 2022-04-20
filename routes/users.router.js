@@ -1,6 +1,6 @@
 var express = require('express')
-const UsuarioController = require('../controllers/users')
-const {validateCreateUser} = require('../middlewares/users.validate')
+const UsuarioController = require('../controllers/users.controller')
+const {validateCreateUser} = require('../middlewares/users.validate.middleware')
 
 
 var router = express.Router()
