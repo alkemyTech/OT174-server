@@ -1,4 +1,4 @@
-const { isAdmin } = require("./isAdmin");
+const { isAdmin } = require("./adminMiddleware");
 
 module.exports = {
   checkOwnership: (req, res, next) => {
