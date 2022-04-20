@@ -4,6 +4,8 @@ module.exports = {
   isAdmin: (req, res, next) => {
     return req.user.roleId === roleIds.ADMIN
       ? next()
-      : res.status(HttpCodesEnum.FORBBIDEN).json({ HttpCodesEnum.STATUS_FORBBIDEN });
+      : res
+          .status(HttpCodesEnum.FORBBIDEN)
+          .json({ message: HttpCodesEnum.STATUS_FORBBIDEN });
   },
 };

@@ -19,7 +19,7 @@ exports.HttpCodesEnum = {
   STATUS_SERVER_INTERNAL_ERROR: "Internal server error",
 };
 
-exports.roleIds = {
+exports.roleIdsEnum = {
   ADMIN: 1,
   STANDARD: 2,
 };
