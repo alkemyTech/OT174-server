@@ -16,7 +16,7 @@ const loginController = async (req, res, next) => {
     if (user && bcrypt.compareSync(password, user.password)) {
       return res.json({ user: user.email });
     }
-    res.json({ ok: false });
+    res.status(401).json({ ok: false });
   } catch (error) {
     res.json({ ok: false });
   }
