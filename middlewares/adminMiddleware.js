@@ -1,4 +1,5 @@
-const { HttpCodesEnum, roleIdsEnum } = require("../enums");
+const { HttpCodesEnum } = require("../enums/httpCodesEnum");
+const { roleIdsEnum } = require("../enums/roleIdsEnum");
 
 module.exports = {
   isAdmin: (req, res, next) => {

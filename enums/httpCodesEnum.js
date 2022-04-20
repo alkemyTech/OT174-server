@@ -18,8 +18,3 @@ exports.HttpCodesEnum = {
   STATUS_NOT_FOUND: "Not found",
   STATUS_SERVER_INTERNAL_ERROR: "Internal server error",
 };
-
-exports.roleIdsEnum = {
-  ADMIN: 1,
-  STANDARD: 2,
-};
