@@ -2,11 +2,11 @@ var user = require("../models/index");
 const bcryptjs = require("bcryptjs");
 // const { hashPassword } = require("../helpers/bcryptjs");
 
-const AddUsuario = (req, res, next) => {
+const addUsuario = async (req, res, next) => {
   const { firstName, lastName, email, password, image, roleId } = req.body;
   usersdb = user.User;
 
-  usersdb
+ await usersdb
     .create({
       firstName,
       lastName,
@@ -33,7 +33,7 @@ const AddUsuario = (req, res, next) => {
 };
 
 module.exports = {
-  AddUsuario,
+  addUsuario,
 };
 
 // crear el usuario en la base de datos

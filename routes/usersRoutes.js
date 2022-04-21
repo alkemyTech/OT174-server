@@ -2,7 +2,7 @@ var express = require('express')
 const { body, validationResult, check, oneOf } = require('express-validator');
 const { validarCampos} = require('../middlewares/validar-campos');
 var user = require('../models/index')
-const UsuarioController = require('../controllers/users')
+const UsuarioController = require('../controllers/usersController')
 const { emailExiste, existeUsuarioPorId } = require('../helpers/db-validatiors')
 const bcryptjs = require('bcryptjs')
 const { validateCreateUser } = require('../middlewares/users.validate')
@@ -15,7 +15,7 @@ router.get('/', function (req, res, next) {
   res.send('respond with a resource GET')
 });
 
-router.post('/auth/register',validateCreateUser,UsuarioController.AddUsuario)
+router.post('/auth/register',validateCreateUser,UsuarioController.addUsuario)
 
 
 
