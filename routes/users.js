@@ -10,6 +10,6 @@ router.get('/', function(req, res, next) {
 });
 
 /*DELETE user by id */ 
-router.delete('/:id', userController.v1.deleteUser);
+router.delete('/:id', userController.v1.deleteUserById);
 
 module.exports = router;
