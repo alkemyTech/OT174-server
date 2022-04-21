@@ -1,22 +1,19 @@
-const { Organization } = require("../models/index");
+const {findPublicDataById} = require('../services/organizationService');
 const  {SERVER_INTERNAL_ERROR, ERROR_NOT_FOUND, RESPONSE_OK}= require("../enums/messages");
 
 module.exports = {
   v1: {
     //initial version
-    getPublicData,
+    getPublicDataById,
   },
 };
 
 //function to get the information of an organization by id
 
-async function getPublicData(req, res) {
+async function getPublicDataById(req, res) {
   if (req.params.id) {
     try {
-      const organization = await Organization.findOne({
-        where: { id: req.params.id },
-        attributes: ["name", "image", "phone", "address"],
-      });
+      const organization =await  findPublicDataById(req.params.id);
       if (organization) {
         res.status(200).json({
           message: RESPONSE_OK,

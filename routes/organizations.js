@@ -4,7 +4,7 @@ const organizationController = require('../controllers/organizationController');
 
 
 //GET public information of an organization by id
-router.get('/public/:id', organizationController.v1.getPublicData);
+router.get('/public/:id', organizationController.v1.getPublicDataById);
 
 
 module.exports = router;
