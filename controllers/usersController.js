@@ -2,7 +2,7 @@ var user = require("../models/index");
 const bcryptjs = require("bcryptjs");
 const { sendEmail } = require("../helpers/sgMail");
 
-const AddUsuario = (req, res, next) => {
+const addUsuario = (req, res, next) => {
   const { firstName, lastName, email, password, image, roleId } = req.body;
   usersdb = user.User;
 
@@ -17,7 +17,7 @@ const AddUsuario = (req, res, next) => {
       // body
     })
     .then(function (user) {
-      sendEmail(user.email, user.firstName, user.lastName);
+      sendEmail(user.email);
       res.json({
         message: "User created successfully",
         user,
@@ -34,7 +34,7 @@ const AddUsuario = (req, res, next) => {
 };
 
 module.exports = {
-  AddUsuario,
+  addUsuario,
 };
 
 
