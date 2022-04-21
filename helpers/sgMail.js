@@ -4,8 +4,13 @@ const { SENDGRID_API_KEY, SENDGRID_DOMAIN } = require("../config/config").develo
 
 sgMail.setApiKey(SENDGRID_API_KEY);
 
-const sendEmail = (email,nombre,lastName) => {
-  console.log("email api ::::::", email);
+const template= {
+  
+}
+
+
+const sendEmail = (email) => {
+  
   const msg = {
     to: email,
     from: SENDGRID_DOMAIN,
@@ -15,7 +20,7 @@ const sendEmail = (email,nombre,lastName) => {
     html: `
         <div>
           <h1>Welcome a ONG !</h1>
-          <h3>¡Hola, ${nombre} ${lastName}</h3>
+          <h3>¡Hola,</h3>
           <p>You have successfully registered</p>
         </div>
       `,
