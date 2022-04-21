@@ -4,6 +4,8 @@ const { SENDGRID_API_KEY, SENDGRID_DOMAIN } =
 const sendplantilla = require("./plantillaEmail").platilla;
 sgMail.setApiKey(SENDGRID_API_KEY);
 
+
+
 const sendEmail = (email, nombre, lastName) => {
   const msg = {
     to: email,
