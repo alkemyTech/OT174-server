@@ -1,11 +1,11 @@
 var express = require('express')
 const { body, validationResult, check, oneOf } = require('express-validator');
-const { validarCampos} = require('../middlewares/validar-campos');
+const { validarCampos} = require('../middlewares/validarCamposMiddlewar');
 var user = require('../models/index')
 const UsuarioController = require('../controllers/usersController')
 const { emailExiste, existeUsuarioPorId } = require('../helpers/db-validatiors')
 const bcryptjs = require('bcryptjs')
-const { validateCreateUser } = require('../middlewares/users.validate')
+const { validateCreateUser } = require('../middlewares/ValidateMiddewar')
 
 
 var router = express.Router()

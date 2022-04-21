@@ -1,6 +1,6 @@
 var express = require('express')
 const { body, validationResult, check, oneOf } = require('express-validator');
-const { validarCampos} = require('../middlewares/validar-campos');
+const { validarCampos} = require('./validarCamposMiddlewar');
 var user = require('../models/index')
 const UsuarioController = require('../controllers/usersController')
 const { emailExiste} = require('../helpers/db-validatiors')
