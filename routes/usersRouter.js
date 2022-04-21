@@ -2,7 +2,7 @@ var express = require('express')
 const { body, validationResult, check, oneOf } = require('express-validator');
 const { validarCampos} = require('../middlewares/validar-campos');
 var user = require('../models/index')
-const UsuarioController = require('../controllers/users')
+const UsuarioController = require('../controllers/usersController')
 const { emailExiste, existeUsuarioPorId } = require('../helpers/db-validatiors')
 const bcryptjs = require('bcryptjs')
 
