@@ -1,6 +1,6 @@
 var express = require('express')
-const UsuarioController = require('../controllers/users.controller')
-const {validateCreateUser} = require('../middlewares/users.validate.middleware')
+const UsuarioController = require('../controllers/usersController')
+const {validateCreateUser} = require('../middlewares/ValidateMiddewar')
 
 
 var router = express.Router()
@@ -12,7 +12,7 @@ router.get('/', function (req, res, next) {
 
 // * Registro de usuarios y validaciones de campos de registro
 
-router.post('/auth/register',validateCreateUser,UsuarioController.AddUsuario)
+router.post('/auth/register',validateCreateUser,UsuarioController.addUsuario)
 
 
 

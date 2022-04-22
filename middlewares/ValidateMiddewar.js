@@ -1,8 +1,8 @@
 var express = require('express')
 const { body, validationResult, check, oneOf } = require('express-validator');
-const { validarCampos} = require('./validarCampos.middleware');
+const { validarCampos} = require('./validarCamposMiddlewar');
 var user = require('../models/index')
-const UsuarioController = require('../controllers/users.controller')
+const UsuarioController = require('../controllers/usersController')
 const { emailExiste} = require('../helpers/db-validatiors')
 const bcryptjs = require('bcryptjs')
 
@@ -10,6 +10,10 @@ const bcryptjs = require('bcryptjs')
 // FIXME: quemas esta usando o express-validator? 
 
 const validateCreateUser = [
+    //TODO: validacion de email
+
+    check('email', 'invalid email').isEmail(), //VALIDA QUE SEA UN EMAIL VALIDO
+    check('email').custom(emailExiste), //VALIDA QUE NO EXISTA UN EMAIL IGUAL
 
       // TODO: validacion de firstName
     
@@ -33,10 +37,10 @@ const validateCreateUser = [
     check('password', 'Password must have at least one lowercase letter').matches(/[a-z]/), //VALIDA QUE ALMENOS TENGA UNA LETRA MINUSCULA
     check('password', 'The password must have at least one special character').matches(/[!@#$%^&*(),.?":{}|<>]/), 
     
-    //TODO: validacion de email
 
-    check('email', 'invalid email').isEmail(), //VALIDA QUE SEA UN EMAIL VALIDO
-    check('email').custom(emailExiste), //VALIDA QUE NO EXISTA UN EMAIL IGUAL
+    //TODO: validacion de role
+    check('roleId', 'Campo no puede is vacio').not().isEmpty(), // todo: campo no puede is vacio
+    check('roleId').isNumeric().withMessage('El role debe de ser numerico'), // todo: se valida que el nombre tenga minimo 2 caracteres y maximo 30
     
    
     validarCampos  
