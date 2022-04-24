@@ -17,7 +17,7 @@ const updateCategoriesById = async(req,res)=>{
         return res.status(201).json(updatedCategorie)
         
     }catch(err){
-        return res.status(500).json(err);
+        return res.status(500).json({message: err.message});
     }
 }
 
