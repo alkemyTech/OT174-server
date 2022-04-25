@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
+const getAllUsers=require("../controllers/getAllUsers");
+const verifyUserRol=require("../middlewares/verifyUserRol")
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+router.get('/',verifyUserRol,getAllUsers);
 
 module.exports = router;
