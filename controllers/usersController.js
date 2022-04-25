@@ -1,6 +1,7 @@
 var user = require("../models/index");
 const bcryptjs = require("bcryptjs");
 const { sendEmail } = require("../helpers/sgMail");
+const createJwt = require("../utils/createJwt");
 
 const addUsuario = (req, res, next) => {
   const { firstName, lastName, email, password, image, roleId } = req.body;
@@ -18,9 +19,9 @@ const addUsuario = (req, res, next) => {
     })
     .then(function (user) {
       sendEmail(user.email);
+      const token= createJwt(email);
       res.json({
-        message: "User created successfully",
-        user,
+        token
       });
     })
     .catch(function (err) {
@@ -36,7 +37,6 @@ const addUsuario = (req, res, next) => {
 module.exports = {
   addUsuario,
 };
-
 
 // crear el usuario en la base de datos
 // const sql = `INSERT INTO users (firstName, lastName, email, password, image, roleId) VALUES ('${firstName}', '${lastName}', '${email}', '${password}', '${image}', '${roleId}')`;
