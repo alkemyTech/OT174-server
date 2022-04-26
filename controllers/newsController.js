@@ -1,3 +1,4 @@
+const { HttpCodesEnum } = require('../enums/httpCodesEnum');
 const { News } = require('../models/index');
 
 
@@ -7,13 +8,13 @@ const deleteNewsById = async (req, res) => {
         const deletedNews = await News.destroy({ where: { id: req.params.id } });
 
         if (!deletedNews) {
-            return res.status(404).send('News not found');
+            return res.status(HttpCodesEnum.NOT_FOUND).send('News not found');
         };
 
-        return res.sendStatus(204)
+        return res.sendStatus(HttpCodesEnum.DELETED)
 
     } catch (err) {
-        return res.status(500).json({message: err.message});
+        return res.status(HttpCodesEnum.SERVER_INTERNAL_ERROR).json({message: err.message});
     }
 
 }
