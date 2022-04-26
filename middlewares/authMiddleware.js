@@ -1,25 +1,19 @@
-const jwt = require("jsonwebtoken");
+const {RESPONSE_OK} = require('../enums/messages');
 
+const {
+  validateExistsToken,
+  getUserIdByToken,
+} = require("../services/tokenService");
 
-async function verifyToken(req, res, next) {
-    try {
-      const token = req.headers["x-access-token"];
-      if (token) {
-        const verify = await jwt.verify(token, process.env.SECRET_JWT);
-        req.userId = verify.id;
-        console.log(verify);
-      } else {
-        return res.status(401).json({
-          auth: false,
-          msg: "No token provided",
-        });
-      }
-      next()
-    } catch {
-      res.status(403).json({
-        auth: false,
-        msg: "Invalid token provided",
-      });
-    }
-   
-  }
+async function validateToken(req, res) {
+  const token = validateExistsToken(req, res);
+  const id = getUserIdByToken(token);
+  res.status(200).json({
+    auth: RESPONSE_OK,
+    id: id,
+  });
+}
+
+module.exports = {  
+  validateToken,
+};
