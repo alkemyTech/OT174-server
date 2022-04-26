@@ -22,6 +22,15 @@ module.exports = {
                 allowNull: false,
                 unique: true
             },
+            organizationId: {
+                type: Sequelize.INTEGER,
+                references: {
+                    model: 'Organization',
+                    key: 'id',
+                },
+                onUpdate: 'CASCADE',
+                onDelete: 'RESTRICT'
+            },
             deletedAt: {
                 type: Sequelize.DATE,
             },
@@ -35,19 +44,6 @@ module.exports = {
             }
         });
 
-        await queryInterface.addColumn(
-            'Slide',
-            'organizationId',
-            {
-                type: Sequelize.INTEGER,
-                references: {
-                    model: 'Organization',
-                    key: 'id'
-                },
-                onUpdate: 'CASCADE',
-                onDelete: 'SET NULL'
-            }
-        );
     },
     down: async (queryInterface, Sequelize) => {
         await queryInterface.dropTable('Slides');
