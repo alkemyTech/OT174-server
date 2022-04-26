@@ -1,9 +1,12 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const { deleteCategoriesById } = require('../controllers/categoriesController');
+const categoriesController = require("../controllers/categoriesController");
 
-
-
-router.delete('/:id', deleteCategoriesById);
+router.get("", categoriesController.getAllCategories);
+router.get("/:id", categoriesController.getCategoryById);
+router.post("", categoriesController.createCategory);
+router.put("/:id", categoriesController.updateCategoryById);
+router.delete("/:id", categoriesController.deleteCategoryById);
 
 module.exports = router;
+

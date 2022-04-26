@@ -1,13 +1,15 @@
-const { Categories } = require('../models/index');
+// const { Category } = require("../models");
 
+exports.getAllCategories = async (req, res, next) => {};
+exports.getCategoryById = async (req, res, next) => {};
+exports.createCategory = async (req, res, next) => {};
+exports.deleteCategoryById = async (req, res, next) => {
+  try {
 
-const deleteCategoriesById = async (req, res) => {
-    try {
+        const deletedCategory = await Category.destroy({ where: { id: req.params.id } });
 
-        const deletedCategories = await Categories.destroy({ where: { id: req.params.id } });
-
-        if (!deletedCategories) {
-            return res.status(404).send('Categories not found');
+        if (!deletedCategory) {
+            return res.status(404).send('Category not found');
         };
 
         return res.sendStatus(204)
@@ -15,10 +17,7 @@ const deleteCategoriesById = async (req, res) => {
     } catch (err) {
         return res.status(500).json({ message: err.message });
     }
+};
 
-}
+exports.updateCategoryById = async (req, res, next) => {};
 
-
-module.exports = {
-    deleteCategoriesById
-}
