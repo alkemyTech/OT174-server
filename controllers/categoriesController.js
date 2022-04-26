@@ -1,27 +1,43 @@
-const { Categories } = require('../models/index');
+// const { Category } = require("../models");
+
+exports.getAllCategories = async (req, res, next) => {};
+exports.getCategoryById = async (req, res, next) => {};
+exports.createCategory = async (req, res, next) => {};
+exports.deleteCategoryById = async (req, res, next) => {};
 
 
-const updateCategoriesById = async(req,res)=>{
-    try{
 
-        const categorieToUpdate = await Categories.findOne({where : {id: req.params.id}});
 
-        if(!categorieToUpdate){
-            return res.status(404).send('Categorie not found');
+
+
+
+
+
+
+
+
+
+
+
+
+exports.updateCategoryById = async (req, res, next) => {
+
+  try {
+
+        const categoryToUpdate = await Category.findOne({ where: { id: req.params.id } });
+
+        if (!categoryToUpdate) {
+            return res.status(404).send('Category not found');
         }
 
-        await categorieToUpdate.set(req.body);
+        await categoryToUpdate.set(req.body);
 
-        const updatedCategorie = await categorieToUpdate.save();
+        const updatedCategory = await categoryToUpdate.save();
 
-        return res.status(201).json(updatedCategorie)
-        
-    }catch(err){
-        return res.status(500).json({message: err.message});
+        return res.status(201).json(updatedCategory)
+
+    } catch (err) {
+        return res.status(500).json({ message: err.message });
     }
-}
-
-
-module.exports = {
-    updateCategoriesById
-}
+  
+};
