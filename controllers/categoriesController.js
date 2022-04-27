@@ -1,43 +1,33 @@
 // const { Category } = require("../models");
+const { HttpCodesEnum } = require('../enums/httpCodesEnum');
 
 exports.getAllCategories = async (req, res, next) => {};
 exports.getCategoryById = async (req, res, next) => {};
 exports.createCategory = async (req, res, next) => {};
 exports.deleteCategoryById = async (req, res, next) => {};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 exports.updateCategoryById = async (req, res, next) => {
-
   try {
+    
+        const { name, description, image } = req.body;
 
-        const categoryToUpdate = await Category.findOne({ where: { id: req.params.id } });
+        const category = await Category.findOne({ where: { id: req.params.id } });
 
-        if (!categoryToUpdate) {
-            return res.status(404).send('Category not found');
+        if (!category) {
+            return res.status(HttpCodesEnum.NOT_FOUND).send('Category not found');
         }
 
-        await categoryToUpdate.set(req.body);
+        await category.set({
+            name,
+            description,
+            image
+        });
 
-        const updatedCategory = await categoryToUpdate.save();
+        await category.save();
 
-        return res.status(201).json(updatedCategory)
+        return res.status(HttpCodesEnum.UPDATED).json(category)
 
     } catch (err) {
-        return res.status(500).json({ message: err.message });
+        return res.status(HttpCodesEnum.SERVER_INTERNAL_ERROR).json({ message: err.message });
     }
   
 };
