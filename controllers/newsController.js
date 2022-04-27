@@ -1,22 +1,19 @@
 const { New } = require("../models/New");
+const { HttpCodesEnum } = require("../enums/httpCodesEnum");
 
-const getNewById = async (req, res, next) => {
+exports.getNewById = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const newFound = await New.findOne({
+    const news = await New.findOne({
       where: id,
     });
 
-    if (!newFound) {
-      return res.status(404).send("New not found");
+    if (!news) {
+      return res.status(HttpCodesEnum.NOT_FOUND).send("New not found");
     }
 
-    return res.json({ New: newFound });
+    return res.json({ New: news });
   } catch (err) {
-    return res.status(500).json({ message: err.message });
+    return res.status(HttpCodesEnum.SERVER_INTERNAL_ERROR).json({ message: err.message });
   }
-};
-
-module.exports = {
-  getNewById,
 };
