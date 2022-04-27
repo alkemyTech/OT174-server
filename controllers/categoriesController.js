@@ -1,4 +1,5 @@
 // const { Category } = require("../models");
+const { HttpCodesEnum } = require('../enums/httpCodesEnum');
 
 exports.getAllCategories = async (req, res, next) => {};
 exports.getCategoryById = async (req, res, next) => {};
@@ -6,16 +7,18 @@ exports.createCategory = async (req, res, next) => {};
 exports.deleteCategoryById = async (req, res, next) => {
   try {
 
-        const deletedCategory = await Category.destroy({ where: { id: req.params.id } });
+        const category = await Category.findOne({ where: { id: req.params.id } });
 
-        if (!deletedCategory) {
-            return res.status(404).send('Category not found');
+        if (!category) {
+            return res.status(HttpCodesEnum.NOT_FOUND).send('Category not found');
         };
 
-        return res.sendStatus(204)
+        await category.destroy();
+
+        return res.sendStatus(HttpCodesEnum.DELETED)
 
     } catch (err) {
-        return res.status(500).json({ message: err.message });
+        return res.status(HttpCodesEnum.SERVER_INTERNAL_ERROR).json({ message: err.message });
     }
 };
 
