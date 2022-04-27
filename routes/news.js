@@ -1,7 +1,11 @@
-var express = require('express');
-var router = express.Router();
-const { deleteNewsById } = require('../controllers/newsController');
+const express = require("express");
+const router = express.Router();
+const newsController = require("../controllers/newsController");
 
-router.delete('/:id', deleteNewsById);
+router.get("", newsController.getAllNews);
+router.get("/:id", newsController.getNewById);
+router.post("", newsController.createNew);
+router.put("/:id", newsController.updateNewById);
+router.delete("/:id", newsController.deleteNewById);
 
 module.exports = router;
