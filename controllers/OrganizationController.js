@@ -1,62 +1,34 @@
-const { Organization } = require("../models/index");
+const {findPublicDataById} = require('../services/organizationService');
+const  {SERVER_INTERNAL_ERROR, ERROR_NOT_FOUND, RESPONSE_OK}= require("../enums/messages");
 
 module.exports = {
   v1: {
     //initial version
-    getPublicData,
+    getPublicDataById,
   },
 };
-//function to get the information of an organization
 
-async function getPublicData(req, res) {
-  if (req.query.name) {
+//function to get the information of an organization by id
+
+async function getPublicDataById(req, res) {
+  if (req.params.id) {
     try {
-      let organization = await Organization.findOne({
-        where: { name: req.query.name },
-        attributes: ["name", "image", "phone", "address"],
-      });
+      const organization =await  findPublicDataById(req.params.id);
       if (organization) {
         res.status(200).json({
-          ok: true,
+          message: RESPONSE_OK,
           organization,
         });
       } else {
         res.status(404).json({
-          ok: false,
-          message: "Organization not found",
+          message: ERROR_NOT_FOUND,
         });
       }
     } catch (error) {
       res.status(500).json({
-        ok: false,
-        message: "Error getting organization",
+        message: SERVER_INTERNAL_ERROR,
         error,
       });
     }
   }
-  else if(req.query.id){
-    try {
-        let organization = await Organization.findOne({
-            where: { id: req.query.id },
-            attributes: ["name", "image", "phone", "address"],
-        });
-        if (organization) {
-            res.status(200).json({
-            ok: true,
-            organization,
-            });
-        } else {
-            res.status(404).json({
-            ok: false,
-            message: "Organization not found",
-            });
-        }
-        } catch (error) {
-        res.status(500).json({
-            ok: false,
-            message: "Error getting organization",
-            error,
-        });
-        }
-    }
 }
