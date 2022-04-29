@@ -7,5 +7,5 @@ exports.updateNewsById = async (req, res, next) => {
   const newsId = req.params.id;
   const { name, content, image, categoryId } = req.body;
 
-  newsService.update(res, newsId, name, content, image, categoryId);
+  await newsService.update(res, newsId, name, content, image, categoryId);
 };
