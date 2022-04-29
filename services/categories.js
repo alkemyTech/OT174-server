@@ -1,10 +1,17 @@
+const { HttpCodesEnum } = require("../enums/httpCodesEnum");
 const categoriesRepository = require("../repositories/categories");
 
-exports.getAll = () => categoriesRepository.getAll();
-exports.getById = (id) => categoriesRepository.getById(id);
-exports.create = (name, image, description) =>
-  categoriesRepository.create(name, image, description);
-exports.update = (id, name, image, description) => {
-  categoriesRepository.update(id, name, image, description);
+exports.create = async (res, name, image, description) => {
+  try {
+    const category = await categoriesRepository.create(
+      name,
+      image,
+      description
+    );
+    return res.status(HttpCodesEnum.CREATED).json(category);
+  } catch (err) {
+    return res
+      .status(HttpCodesEnum.SERVER_INTERNAL_ERROR)
+      .json({ message: HttpCodesEnum.STATUS_SERVER_INTERNAL_ERROR });
+  }
 };
-exports.destroy = (id) => categoriesRepository.delete(id);
