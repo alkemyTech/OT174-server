@@ -1,9 +1,8 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
-const { authenticate } = require("../middlewares/authMiddleware.js");
 const controller = require("../controllers/authController.js");
+const usersMiddleware = require("../middlewares/usersMiddleware.js");
 
-
-router.post("/register", controller.register);
+router.post("/register", usersMiddleware.validateUser, controller.register);
 
 module.exports = router;
