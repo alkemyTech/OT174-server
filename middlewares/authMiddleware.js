@@ -9,8 +9,6 @@ const authenticate = (req, res, next) => {
 
   req.user = verified;
 
-  console.log(verified);
-
   next();
 };
 
