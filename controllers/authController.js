@@ -16,7 +16,7 @@ exports.register = async (req, res) => {
       password: hash,
       roleId,
     });
-    const token = jwt.sign({ id: savedUser._id }, process.env.SECRET_JWT_KEY, {
+    const token = jwt.sign({ savedUser }, process.env.SECRET_JWT_KEY, {
       expiresIn: 86400, //24 hs
     });
     res
