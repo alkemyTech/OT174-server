@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
-            //this.belongsTo(models.Organization);
+            this.belongsTo(models.Organization);
         }
     };
     Slide.init({
