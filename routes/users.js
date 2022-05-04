@@ -1,13 +1,20 @@
 var express = require('express');
 var router = express.Router();
+
+const updateUser=require("../controllers/updateUserController")
+
 const {createJWTToken} = require('../util/authUtil');
 const bcrypt = require('bcrypt');
 const {authenticate} = require('../middlewares/authMiddleware');
+
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
+
+
+router.patch("/:id",updateUser)
 
 router.post('/login', async (req,res)=> {
   try{
@@ -49,6 +56,7 @@ router.post('/login', async (req,res)=> {
 router.get('/protected',authenticate, async (req,res) =>{
   res.send('protected')
 })
+
 
 
 
