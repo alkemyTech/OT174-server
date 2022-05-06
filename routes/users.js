@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const userController = require('../controllers/userController');
+const middleware = require('../middlewares/authMiddleware')
 
 
 
@@ -10,6 +11,6 @@ router.get('/', function(req, res, next) {
 });
 
 /*DELETE user by id */ 
-router.delete('/:id', userController.v1.deleteUserById);
+router.delete('/:id', middleware.validateToken ,userController.v1.deleteUser);
 
 module.exports = router;
