@@ -1,16 +1,19 @@
-const jwt = require('jsonwebtoken')
+const {RESPONSE_OK} = require('../enums/messages');
 
+const {
+  validateExistsToken,
+  getUserIdByToken,
+} = require("../services/tokenService");
 
-const authenticate = (req, res, next) => {
-
-    const token = req.headers.authorization?.split(' ')[1];
-
-    const verified = jwt.verify(token, process.env.SECRET_JWT_KEY);
-
-    req.token = verified.user;
-
-    next();
-    
+async function validateToken(req, res) {
+  const token = validateExistsToken(req, res);
+  const id = getUserIdByToken(token);
+  res.status(200).json({
+    auth: RESPONSE_OK,
+    id: id,
+  });
 }
 
-module.exports = {authenticate}
+module.exports = {  
+  validateToken,
+};
