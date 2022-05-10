@@ -12,6 +12,8 @@ const organizationsRouter = require('./routes/organizations');
 
 const categoriesRouter = require('./routes/categories');
 
+const categoriesRouter = require('./routes/categories');
+
 const app = express();
 app.use(cors())
 
@@ -28,6 +30,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/organization', organizationsRouter);
+
+app.use('/categories', categoriesRouter);
+
 
 app.use('/categories', categoriesRouter);
 
